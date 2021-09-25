@@ -1,0 +1,609 @@
+{
+	"info": {
+		"_postman_id": "339283bb-d921-452d-b241-736bcfebb81d",
+		"name": "HW_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "First_has_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verify if status code is 200\r",
+							"pm.test(\"Verify if status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verify if response body is correct\r",
+							"pm.test(\"Verify if response body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"This is the first responce from server!\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/get_method?name=Maksym&age=29",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"get_method"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maksym"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_2_has_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verify if status code is 200\r",
+							"pm.test(\"Verify if status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let resJson = pm.response.json();\r",
+							"let reqJson = request.data;\r",
+							"\r",
+							"let name_res = resJson.name;\r",
+							"let name_req_r = \"Maksym\";\r",
+							"let age_res = parseInt(resJson.age);\r",
+							"let age_req_r = 29;\r",
+							"let salary_res = resJson.salary;\r",
+							"let salary_req_r = 3000;\r",
+							"\r",
+							"let name_req = reqJson.name;\r",
+							"let age_req = parseInt(reqJson.age);\r",
+							"let salary_req = parseInt(reqJson.salary);\r",
+							"let u_salary_1_5_year_res = resJson.family.u_salary_1_5_year;\r",
+							"\r",
+							"// Verify if name_r comparison is correct\r",
+							"pm.test(\"Verify if name_r comparison is correct\", function() {\r",
+							"    pm.expect(name_res).to.eql(name_req_r);\r",
+							"});\r",
+							"\r",
+							"// Verify if age_r comparison is correct\r",
+							"pm.test(\"Verify if age_r comparison is correct\", function() {\r",
+							"    pm.expect(age_res).to.eql(age_req_r);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary_r comparison is correct\r",
+							"pm.test(\"Verify if salary_r comparison is correct\", function() {\r",
+							"    pm.expect(salary_res).to.eql(salary_req_r);\r",
+							"});\r",
+							"\r",
+							"// Verify if name comparison is correct\r",
+							"pm.test(\"Verify if name comparison is correct\", function() {\r",
+							"    pm.expect(name_res).to.eql(name_req);\r",
+							"});\r",
+							"\r",
+							"// Verify if age comparison is correct\r",
+							"pm.test(\"Verify if age comparison is correct\", function() {\r",
+							"    pm.expect(age_res).to.eql(age_req);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary comparison is correct\r",
+							"pm.test(\"Verify if salary comparison is correct\", function() {\r",
+							"    pm.expect(salary_res).to.eql(salary_req);\r",
+							"});\r",
+							"\r",
+							"console.log(resJson.family);\r",
+							"\r",
+							"// Verify if u_salary_1_5_year comparison is correct\r",
+							"pm.test(\"Verify if u_salary_1_5_year comparison is correct\", function() {\r",
+							"    pm.expect(u_salary_1_5_year_res).to.eql(salary_req*4)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Maksym",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "29",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "3000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_1?name=Maksym&age=29&weight=92",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_1"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maksym"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "weight",
+							"value": "92"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_2?name=Maksym&age=29&salary=1000",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_2"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maksym"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "salary",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_5_has_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verify if status code is 200\r",
+							"pm.test(\"Verify if status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"let resJson = pm.response.json();\r",
+							"\r",
+							"let reqJson = {};\r",
+							"pm.request.url.query.all().forEach((param) => { reqJson[param.key] = param.value});\r",
+							"\r",
+							"let name_res = resJson.name;\r",
+							"let age_res = resJson.age;\r",
+							"let salary_res = resJson.salary;\r",
+							"let dog = resJson.family.pets.dog;\r",
+							"\r",
+							"// Verify if name comparison is correct\r",
+							"pm.test(\"Verify if name comparison is correct\", function() {\r",
+							"    pm.expect(name_res).to.eql(reqJson.name);\r",
+							"});\r",
+							"\r",
+							"// Verify if age comparison is correct\r",
+							"pm.test(\"Verify if age comparison is correct\", function() {\r",
+							"    pm.expect(age_res).to.eql(reqJson.age);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary comparison is correct\r",
+							"pm.test(\"Verify if salary comparison is correct\", function() {\r",
+							"    pm.expect(salary_res).to.eql(parseInt(reqJson.salary));\r",
+							"});\r",
+							"\r",
+							"console.log(resJson.family);\r",
+							"\r",
+							"// Verify if dog has name\r",
+							"pm.test(\"Verify if dog has name\", function() {\r",
+							"    pm.expect(dog).to.have.property(\"name\");\r",
+							"});\r",
+							"\r",
+							"// Verify if dog has age\r",
+							"pm.test(\"Verify if dog has age\", function() {\r",
+							"    pm.expect(dog).to.have.property(\"age\");\r",
+							"});\r",
+							"\r",
+							"// Verify if dog name has Luky\r",
+							"pm.test(\"Verify if dog name has Luky\", function() {\r",
+							"    pm.expect(dog).to.have.property(\"name\", \"Luky\");\r",
+							"});\r",
+							"\r",
+							"// Verify if age has 4\r",
+							"pm.test(\"Verify if age has 4\", function() {\r",
+							"    pm.expect(dog).to.have.property(\"age\", 4);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_3?name=Maksym&age=29&salary=3000",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maksym"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "salary",
+							"value": "3000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_6_has_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verify if status code is 200\r",
+							"pm.test(\"Verify if status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"let resJson = pm.response.json();\r",
+							"\r",
+							"let reqJson = {};\r",
+							"pm.request.url.query.all().forEach((param) => { reqJson[param.key] = param.value});\r",
+							"\r",
+							"\r",
+							"\r",
+							"let name_res = resJson.name;\r",
+							"let age_res = resJson.age;\r",
+							"let name_req = reqJson.name;\r",
+							"let age_req = parseInt(reqJson.age);\r",
+							"\r",
+							"// Verify if name comparison is correct\r",
+							"pm.test(\"Verify if name comparison is correct\", function() {\r",
+							"    pm.expect(name_res).to.eql(name_req);\r",
+							"});\r",
+							"\r",
+							"// Verify if age comparison is correct\r",
+							"pm.test(\"Verify if age comparison is corerct\", function() {\r",
+							"    pm.expect(age_res).to.eql(age_req);\r",
+							"});\r",
+							"\r",
+							"console.log(reqJson.salary, resJson.salary);\r",
+							"\r",
+							"console.log(resJson.salary[0]);\r",
+							"console.log(resJson.salary[1]);\r",
+							"console.log(resJson.salary[2]);\r",
+							"\r",
+							"// Verify if salary comparison is correct\r",
+							"pm.test(\"Verify if salary comparison is correct\", function() {\r",
+							"    pm.expect(resJson.salary[0]).to.eql(+reqJson.salary);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary_2 comparison is correct\r",
+							"pm.test(\"Verify if salary_2 comparison is correct\", function() {\r",
+							"    pm.expect(+resJson.salary[1]).to.eql(reqJson.salary*2);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary_3 comparison is correct\r",
+							"pm.test(\"Verify if salary_3 comparison is correct\", function() {\r",
+							"    pm.expect(+resJson.salary[2]).to.eql(reqJson.salary*3);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"name\", resJson.name);\r",
+							"pm.environment.set(\"age\", resJson.age);\r",
+							"pm.environment.set(\"salary\", resJson.salary[0]);\r",
+							"\r",
+							"resJson.salary.forEach((number) => console.log(number));\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_4?name=Maksym&age=29&salary=3000",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maksym"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "salary",
+							"value": "3000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP_7_has_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verify if status code is 200\r",
+							"pm.test(\"Verify if status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let resJson = pm.response.json();\r",
+							"let reqJson = request.data;\r",
+							"\r",
+							"// Verify if resJson has start_qa_salary\r",
+							"pm.test(\"Verify if resJson has start_qa_salary\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"start_qa_salary\");\r",
+							"});\r",
+							"\r",
+							"// Verify if resJson has qa_salary_after_6_months\r",
+							"pm.test(\"Verify if resJson has qa_salary_after_6_months\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"qa_salary_after_6_months\");\r",
+							"});\r",
+							"\r",
+							"// Verify if resJson has qa_salary_after_12_months\r",
+							"pm.test(\"Verify if resJson has qa_salary_after_12_months\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"qa_salary_after_12_months\");\r",
+							"});\r",
+							"\r",
+							"// Verify if resJson has qa_salary_after_1.5_year\r",
+							"pm.test(\"Verify if resJson has qa_salary_after_1.5_year\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"qa_salary_after_1.5_year\");\r",
+							"});\r",
+							"\r",
+							"// Verify if resJson has qa_salary_after_3.5_years\r",
+							"pm.test(\"Verify if resJson has qa_salary_after_3.5_years\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"qa_salary_after_3.5_years\");\r",
+							"});\r",
+							"\r",
+							"// Verify if resJson has person\r",
+							"pm.test(\"Verify if resJson has person\", function() {\r",
+							"    pm.expect(resJson).to.have.property(\"person\");\r",
+							"});\r",
+							"\r",
+							"// Verify if start_qa_salary comparison is correct\r",
+							"pm.test(\"Verify if start_qa_salary comparison is correct\", function() {\r",
+							"    pm.expect(resJson.start_qa_salary).to.eql(+reqJson.salary);\r",
+							"});\r",
+							"\r",
+							"// Verify if qa_salary_after_6_months comparison is correct\r",
+							"pm.test(\"Verify if qa_salary_after_6_months comparison is correct\", function() {\r",
+							"    pm.expect(resJson.qa_salary_after_6_months).to.eql(reqJson.salary*2);\r",
+							"});\r",
+							"\r",
+							"// Verify if qa_salary_after_12_months comparison is correct\r",
+							"pm.test(\"Verify if qa_salary_after_12_months comparison is correct\", function() {\r",
+							"    pm.expect(resJson.qa_salary_after_12_months).to.eql(reqJson.salary*2.7);\r",
+							"});\r",
+							"\r",
+							"// Verify if qa_salary_after_1.5_year comparison is correct\r",
+							"pm.test(\"Verify if qa_salary_after_1.5_year comparison is correct\", function() {\r",
+							"    pm.expect(resJson[\"qa_salary_after_1.5_year\"]).to.eql(reqJson.salary*3.3);\r",
+							"});\r",
+							"\r",
+							"// Verify if  qa_salary_after_3.5_years comparison is correct\r",
+							"pm.test(\"Verify if qa_salary_after_3.5_years comparison is correct\", function() {\r",
+							"    pm.expect(resJson[\"qa_salary_after_3.5_years\"]).to.eql(reqJson.salary*3.8);\r",
+							"});\r",
+							"\r",
+							"// Verify if salary comparison is correct\r",
+							"pm.test(\"Verify if salary comparison is correct\", function() {\r",
+							"    pm.expect(resJson.person.u_name[1]).to.eql(+reqJson.salary);\r",
+							"});\r",
+							"\r",
+							"// Verify if u_age comparison is correct\r",
+							"pm.test(\"Verify if u_age comparison is correct\", function() {\r",
+							"    pm.expect(resJson.person.u_age).to.eql(+reqJson.age);\r",
+							"});\r",
+							"\r",
+							"// Verify if u_salary_5_years comparison is correct\r",
+							"pm.test(\"Verify if u_salary_5_years comparison is correct\", function() {\r",
+							"    pm.expect(resJson.person.u_salary_5_years).to.eql(reqJson.salary*4.2);\r",
+							"});\r",
+							"\r",
+							"Object.entries(resJson.person).forEach(([key, value]) => console.log(key, value));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
